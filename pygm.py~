@@ -109,7 +109,7 @@ def main():
 	spritelist = []
 	resourcemines = []
 
-	dude = King(sprKing, (100, 10))
+	dude = King(sprKing, (100, 10)) #test
 	spritelist.append(dude)
 
 	
