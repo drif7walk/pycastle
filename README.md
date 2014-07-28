@@ -1,0 +1,4 @@
+pycastle
+========
+
+Python RTS game.
