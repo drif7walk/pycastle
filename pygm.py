@@ -9,6 +9,11 @@ from GameObjects import *
 
 gamestate = 0	# 0 Main menu
 	  	# 1 Game
+		# 2 Choose race
+
+playerrace = 0  # 0 Knights
+		# 1 Zombies
+		# 2 Robots
 
 def setGameState(state):
 	global gamestate
@@ -27,6 +32,10 @@ class Menu:
 	def __init__(self, options):
 		self.options = options
 		self.font = pygame.font.SysFont(None, 24)
+
+		self.prevmouse1 = 0
+		self.prevmouse2 = 0
+		self.prevmouse3 = 0
 
 	def draw(self, targetsurface):
 		i = 0
@@ -49,11 +58,11 @@ class Menu:
 			
 			
 			if (mousex > basex and mousex < basex + textw and
-				mousey > basey and mousey < basey + texth):
+				mousey > basey + i * texth and mousey < basey + i * texth + texth):
 				textcol = (150, 150, 150)
 
 				if (self.prevmouse1 == True and mouse1 == False): # Check mousepress on menu item
-					setGameState(1)
+					return i;
 					
 			
 			text = self.font.render(item, 1, textcol)	
@@ -100,7 +109,8 @@ def main():
 	buildList.append(icoCastle);
 
 	# Create main menu
-	mainmenu = Menu(["START GAME"])
+	mainmenu = Menu(["START NEW GAME"])
+	racemenu = Menu(["KNIGHTS","ZOMBIES","ROBOTS"])
 	
 	# Create cursor
 	cursor = Cursor(sprCursor)
@@ -168,14 +178,18 @@ def main():
 			if ev.key == pygame.K_ESCAPE:
 				break
 		
-		if gamestate == 0: # Update main menu
-			print getGameState()
+		# GAME STATE HANDLING UPDATE
+		if gamestate == 0: # Update main 
+			pass # Do cool main menu stuff here
 		elif gamestate == 1: # Update game loop
 			for sprt in spritelist: # Update sprite behaviors
 				sprt.update()
 		
+		# GAME STATE HANDLING DRAW
 		if gamestate == 0:
-			mainmenu.draw(scrsurf)
+			menuchoice = mainmenu.draw(scrsurf)
+			if menuchoice == 0:
+				setGameState(2)
 		elif gamestate == 1:
 			# Draw grass background
 			for y in range(0, 10):
@@ -193,6 +207,11 @@ def main():
 			# Draw available buildings
 			for sprt in buildList:
 				scrsurf.blit(sprt, (0, 0))
+		elif gamestate == 2:
+			menuchoice = racemenu.draw(scrsurf)
+			if menuchoice > 0:
+				playerrace = menuchoice
+				setGameState(1)
 
 
 		# Draw cursor
