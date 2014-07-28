@@ -89,15 +89,15 @@ def main():
 	scrsurf = pygame.display.set_mode((wWidth, wHeight))
 
 	# Load sprites
-	sprKing = LoadImage("king.png")
-	sprGrass = LoadImage("grass.png")
-	sprCastle = LoadImage("castle.png")
-	sprTree = LoadImage("tree.png")
-	sprCursor = LoadImage("finger.png")
-	sprVillager = LoadImage("villager.png")
-	sprMine = LoadImage("mine.png")
-	sprWindmill = LoadImage("windmill.png")
-	sprMiner = LoadImage("miner.png")
+	sprKing = LoadImage("Sprites/king.png")
+	sprGrass = LoadImage("Sprites/grass.png")
+	sprCastle = LoadImage("Sprites/castle.png")
+	sprTree = LoadImage("Sprites/tree.png")
+	sprCursor = LoadImage("Sprites/finger.png")
+	sprVillager = LoadImage("Sprites/villager.png")
+	sprMine = LoadImage("Sprites/mine.png")
+	sprWindmill = LoadImage("Sprites/windmill.png")
+	sprMiner = LoadImage("Sprites/miner.png")
 	# End load sprites
 
 	# Load icon set
